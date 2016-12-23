@@ -1,11 +1,11 @@
 <?php
-Route::get('/reports/', 'Jailuis\PHPReports\PHPReportsController@index');
-Route::get('/report-list-json/', 'Jailuis\PHPReports\PHPReportsController@reportListJson');
-Route::get('/report/', 'Jailuis\PHPReports\PHPReportsController@report');
-Route::get('/report/{format}', 'Jailuis\PHPReports\PHPReportsController@reportWithFormat');
-Route::get('/dashboards/', 'Jailuis\PHPReports\PHPReportsController@dashboards');
-Route::get('/dashboard/{name}', 'Jailuis\PHPReports\PHPReportsController@dashboardWithName');
-Route::get('/edit/', 'Jailuis\PHPReports\PHPReportsController@edit');
-Route::get('/set-environment/', 'Jailuis\PHPReports\PHPReportsController@setEnv');
-Route::get('/email/', 'Jailuis\PHPReports\PHPReportsController@email');
+Route::get('/reports/', 'Pushmotion\PHPReports\PHPReportsController@index');
+Route::get('/report-list-json/', 'Pushmotion\PHPReports\PHPReportsController@reportListJson');
+Route::get('/report/', 'Pushmotion\PHPReports\PHPReportsController@report');
+Route::get('/report/{format}', 'Pushmotion\PHPReports\PHPReportsController@reportWithFormat');
+Route::get('/dashboards/', 'Pushmotion\PHPReports\PHPReportsController@dashboards');
+Route::get('/dashboard/{name}', 'Pushmotion\PHPReports\PHPReportsController@dashboardWithName');
+Route::get('/edit/', 'Pushmotion\PHPReports\PHPReportsController@edit');
+Route::get('/set-environment/', 'Pushmotion\PHPReports\PHPReportsController@setEnv');
+Route::get('/email/', 'Pushmotion\PHPReports\PHPReportsController@email');
 ?>

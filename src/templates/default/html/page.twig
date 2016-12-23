@@ -8,7 +8,7 @@
     <!-- Le styles -->
     {% block stylesheets %}
     <link id="bootstrap" href="{{base}}{{asset_base}}css/bootstrap.{{theme}}.min.css" rel="stylesheet">
-    <link href="{{ base }}{{asset_base}}css/typeahead.js-bootstrap.css" rel="stylesheet">
+    <link href="{{base}}{{asset_base}}css/typeahead.js-bootstrap.css" rel="stylesheet">
     <style>
       body {
         padding-top: 80px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -30,7 +30,7 @@
 	{% endblock %}
 
 	<script>
-		//this allows us to create onReady functions in the body before loading jquery
+		//this allows us to create onReadyyy functions in the body before loading jquery
 		window.queued_jquery_calls = [];
 		window.$ = function(func) {
 			window.queued_jquery_calls.push(func);
@@ -125,7 +125,7 @@
                 {% if config.bootstrap_themelist|length > 1 %}
                     <script type="text/javascript">
                         function changeTheme(theme) {
-                            $('#bootstrap').attr('href', '{{ base }}{{asset_base}}css/bootstrap.' + theme + '.min.css');
+                            $('#bootstrap').attr('href', '{{base}}{{asset_base}}css/bootstrap.' + theme + '.min.css');
                             $.cookie('reports-theme', theme, {path: '{{path}}', expires: 365});
                             $('#theme-swtich > strong').text(theme);
                             $('ul#themes-list li').each(function(){

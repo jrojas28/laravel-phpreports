@@ -1,22 +1,26 @@
-@extends('html.page')
+@extends(is_dir(resource_path('views/vendor/phpreports')) ? 'vendor.phpreports.default.html.page' : 'phpreports::default.html.page')
 
-{{-- block title --}}{!! isset($dashboard->title)? $dashboard->title : 'Dashboard' !!}{{-- endblock --}}
+@section('title')
+  {{-- block title --}}{!! isset($dashboard['title'])? $dashboard['title'] : 'Dashboard' !!}{{-- endblock --}}
+@endsection
 
-{{-- block header --}}
-<h2>{{ $dashboard->title }}</h2>
-@if( $dashboard->description)
-  <p>{!! isset($dashboard->description) ? $dashboard->description : '' !!}</p>
-@endif
-{{-- endblock --}}
+@section('sub-content')
+  {{-- block header --}}
+  <h2>{{ $dashboard['title'] }}</h2>
+  @if( $dashboard['description'])
+    <p>{!! isset($dashboard['description']) ? $dashboard['description'] : '' !!}</p>
+  @endif
+  {{-- endblock --}}
 
-{{-- block content --}}
-<div id='reports_holder'>
+  {{-- block content --}}
+  <div id='reports_holder'>
 
-</div>
-{{-- endblock --}}
+  </div>
+  {{-- endblock --}}
+@endsection
 
-{{-- block stylesheets --}}
 @section('sub-css')
+  {{-- block stylesheets --}}
   <style>
     #content {
       width: auto;
@@ -34,9 +38,9 @@
     }
     </style>
 
-    @if (isset($dashboard->style))
+    @if (isset($dashboard['style']))
       <style type="text/css">
-        {!! $dashboard->style !!}
+        {!! $dashboard['style'] !!}
       </style>
     @endif
 
@@ -45,15 +49,15 @@
 
 {{-- javascripts --}}
 @section('sub-js')
-  <script type='text/javascript' src='{{$base}}{{$asset_base}}js/jquery.dataTables.min.js'></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/moment-with-langs-2.5.1.min.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/daterangepicker-1.3.2.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/bootstrap-multiselect.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/prettify.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/lang-sql.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/jquery.browser.js"></script>
-  <script type="text/javascript" src="{{$base}}{{$asset_base}}js/jquery.iframe-auto-height.plugin.1.9.3.js"></script>
+  <script type='text/javascript' src='{{$base or ''}}{{$asset_base or ''}}js/jquery.dataTables.min.js'></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/moment-with-langs-2.5.1.min.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/daterangepicker-1.3.2.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/bootstrap-multiselect.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/prettify.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/lang-sql.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/jquery.browser.js"></script>
+  <script type="text/javascript" src="{{$base or ''}}{{$asset_base or ''}}js/jquery.iframe-auto-height.plugin.1.9.3.js"></script>
   <script type="text/javascript">
       $("#content").on('click','a[data-role="button"]',function(e) {
           e.preventDefault();
@@ -88,7 +92,7 @@
     if(report.title) {
       container.append($("<h2 class='report-title'>").text(report.title));
     }
-    container.append("<div class='info'><a class='full-link' href='{{base}}/report/html/?"+$.param(report_data)+"'>View full report</a><span class='rendered'></span></div>");
+    container.append("<div class='info'><a class='full-link' href='{{$base or ''}}/report/html/?"+$.param(report_data)+"'>View full report</a><span class='rendered'></span></div>");
 
     if(report.description) {
       container.append($("<p class='description'>").text(report.description));
@@ -98,7 +102,7 @@
 
     var render = function() {
       if(!report.format || report.format === 'html' || report.format === 'table') {
-        var report_url = "{{base}}/report/html";
+        var report_url = "{{$base or ''}}/report/html";
 
         // Loading message
         holder.html("<p>Loading...</p>");
@@ -108,7 +112,7 @@
         });
       }
       else {
-        holder.attr('src',"{{base}}/report/"+report.format+"?"+$.param(report_data));
+        holder.attr('src',"{{$base or ''}}/report/"+report.format+"?"+$.param(report_data));
       }
     };
 
@@ -175,5 +179,5 @@
 
 
   </script>
+  {{-- endblock --}}
 @endsection
-{{-- endblock --}}

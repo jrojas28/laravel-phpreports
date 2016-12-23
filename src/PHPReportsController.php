@@ -1,6 +1,6 @@
 <?php
 
-namespace Jailuis\PHPReports;
+namespace Pushmotion\PHPReports;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as BaseController;

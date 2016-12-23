@@ -198,7 +198,7 @@
         $(this).attr('src', source);
       } else {
         // For other browsers.
-        $(this).load(function () {
+        $(this).on('load', function () {
           resizeHeight(this);
         });
       } // if browser

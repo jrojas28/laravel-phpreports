@@ -1,5 +1,5 @@
 {
-    "name": "jailuis/phpreports",
+    "name": "pushmotion/phpreports",
     "description": "Package to allow PHPReports to work into Laravel 5.3",
     "license": "LGPL-3.0+",
     "authors": [
@@ -9,26 +9,13 @@
         },
         {
             "name": "Jaime O. Rojas C.",
-            "email": "jaime.o.rojas.c@gmail.com"
+            "email": "jaime.rojas@pushmotion.com"
         },
         {
             "name": "Luis E. Rojas C.",
-            "email": "lrojas94@gmail.com"
+            "email": "luis.rojas@pushmotion.com"
         }
     ],
-    "require-dev": {
-        "php": ">=5.3",
-        "ext-pdo": "*",
-        "twig/twig": "1.*",
-        "swiftmailer/swiftmailer": "5.*",
-        "mikecao/flight": "dev-master",
-        "jdorn/sql-formatter": "dev-master",
-        "jdorn/file-system-cache": "dev-master",
-        "phpoffice/phpexcel": "dev-develop",
-        "adodb/adodb-php": "dev-master",
-        "lespoilus/spyc": "dev-master",
-        "google/apiclient": "1.0.*@beta"
-    },
     "require": {
         "php": ">=5.3",
         "ext-pdo": "*",
@@ -47,7 +34,7 @@
             "src/controllers",
         ],
         "psr-4": {
-            "Jailuis\\PHPReports\\": "src/"
+            "Pushmotion\\PHPReports\\": "src/"
         }
     },
     "minimum-stability": "dev"

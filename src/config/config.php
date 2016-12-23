@@ -13,6 +13,11 @@ return array(
 	//(for example historical report timing data is stored here)
 	'cacheDir' => storage_path('phpreports/cache'),
 
+	//The views format.
+	//This is intended so modification is easy based on wether or not you want to modify them.
+	//Can be TWIG or BLADE, defaults to TWIG.
+	'viewsFormat' => 'TWIG',
+
 
 	//this maps file extensions to report types
 	//to override this for a specific report, simply add a TYPE header

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jailuis\PHPReports;
+namespace Pushmotion\PHPReports;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -44,6 +44,6 @@ class PHPReportsServiceProvider extends ServiceProvider
           \File::makeDirectory(config("phpreports.cacheDir"), 0775, true);
         }
 
-        $this->app->make('Jailuis\PHPReports\PHPReportsController');
+        $this->app->make('Pushmotion\PHPReports\PHPReportsController');
     }
 }

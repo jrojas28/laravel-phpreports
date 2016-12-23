@@ -168,6 +168,7 @@ class PhpReports {
 	}
 
 	public static function render($template, $macros) {
+
 		$default = array(
 			'base'=>self::$request->base,
 			'asset_base' => is_dir(public_path('vendor/phpreports')) ? '/vendor/phpreports/' : '/vendor/phpreports/src/assets/',
@@ -182,8 +183,34 @@ class PhpReports {
 		$macros = array_merge($default,$macros);
 
 		//if a template path like 'html/report' is given, add the twig file extension
-		if(preg_match('/^[a-zA-Z_\-0-9\/]+$/',$template)) $template .= '.twig';
-		return self::$twig->render($template,$macros);
+		if(preg_match('/^[a-zA-Z_\-0-9\/]+$/',$template)) {
+			if(self::$config['viewsFormat'] == "BLADE"){
+				if(is_dir(resource_path('views/vendor/phpreports'))){
+					return view('vendor.phpreports.default.'.$template, $macros);
+				}
+				else{
+					$template .= '.blade.php';
+					return view()->file(__DIR__.'/../../templates/default/'.$template, $macros);
+				}
+			}
+			else{
+				$template .= '.twig';
+				return self::$twig->render($template,$macros);
+			}
+		}
+		else{
+			// if(self::$config['viewsFormat'] == "BLADE"){
+			// 	if(is_dir(resource_path('views/vendor/phpreports'))){
+			// 		return view('vendor.phpreports.default.'.$template, $macros);
+			// 	}
+			// 	else{
+			// 		return view()->file(__DIR__.'/../../templates/default/'.$template, $macros);
+			// 	}
+			// }
+			// else{
+				return self::$twig->render($template,$macros);
+			//}
+		}
 	}
 
 	public static function renderString($template, $macros) {
@@ -618,7 +645,6 @@ class PhpReports {
 		if(!isset(self::$loader_cache)) {
 			self::buildLoaderCache();
 		}
-
 		if(isset(self::$loader_cache[$className])) {
 			require_once(self::$loader_cache[$className]);
 			return true;
@@ -628,9 +654,9 @@ class PhpReports {
 		}
 	}
 	public static function buildLoaderCache() {
-		self::load(base_path('phpreports/classes/local'));
-		self::load(base_path('phpreports/classes'),array(base_path('phpreports/classes/local')));
-		self::load(base_path('phpreports/lib'));
+		self::load(__DIR__.'/../../classes/local');
+		self::load(__DIR__.'/../../classes',array(__DIR__.'/../../classes/local'));
+		self::load(__DIR__.'/../../lib');
 	}
 	public static function load($dir, $skip=array()) {
 		$files = glob($dir.'/*.php');
