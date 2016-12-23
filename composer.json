@@ -30,12 +30,12 @@
         "google/apiclient": "1.0.*@beta"
     },
     "autoload": {
-        "classmap": [
-            "src/controllers",
-        ],
         "psr-4": {
             "Pushmotion\\PHPReports\\": "src/"
-        }
+        },
+        "classmap": [
+            "src/controllers"
+        ],
     },
     "minimum-stability": "dev"
 }
